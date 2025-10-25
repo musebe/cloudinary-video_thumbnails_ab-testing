@@ -1,4 +1,5 @@
 // app/ingest/[[...path]]/route.ts
+
 import { NextResponse } from 'next/server'
 
 const POSTHOG_HOST = process.env.NEXT_PUBLIC_POSTHOG_HOST
