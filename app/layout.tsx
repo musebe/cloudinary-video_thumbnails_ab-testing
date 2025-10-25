@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import { CSPostHogProvider } from './providers'; // Path is correct if providers.tsx is in the app dir
-
+import Script from 'next/script';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -18,9 +18,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
+      <head>
+        {/* Add the Video Player CSS here */}
+        <link
+          href='https://unpkg.com/cloudinary-video-player@1.9.4/dist/cld-video-player.min.css'
+          rel='stylesheet'
+        />
+      </head>
       <body className={inter.className}>
         <CSPostHogProvider>{children}</CSPostHogProvider>
       </body>
+      <Script
+        src='https://unpkg.com/cloudinary-video-player@1.9.4/dist/cld-video-player.min.js'
+        strategy='afterInteractive' // Loads the script after the page is interactive
+      />
     </html>
   );
 }
